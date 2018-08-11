@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="AwesomeCalculator ContentTypes" Description="Adds the content types required by the AwesomeCalculator site" Id="e7062e8b-79a2-428f-af56-5e53aaf875a7" Scope="Site">
+  <ElementManifests>
+    <ElementManifest Location="Addition\Elements.xml" />
+    <ElementManifest Location="Subtraction\Elements.xml" />
+  </ElementManifests>
+</Feature>

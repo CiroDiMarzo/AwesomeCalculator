@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A5FFF85A-C3B7-44CE-8E9C-CA93504F8A7C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AwesomeCalculator</RootNamespace>
+    <AssemblyName>AwesomeCalculator</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetOfficeVersion>15.0</TargetOfficeVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{C1CDDADD-2546-481F-9697-4EA41081F2FC};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SandboxedSolution>False</SandboxedSolution>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>AwesomeCalculator.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.SharePoint" />
+    <Reference Include="Microsoft.SharePoint.Client.ServerRuntime" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constants\ContentTypesId.cs" />
+    <Compile Include="Constants\InternalNames.cs" />
+    <Compile Include="EventReceivers\SubtractionEventReceiver.cs" />
+    <Compile Include="EventReceivers\AdditionEventReceiver.cs" />
+    <Compile Include="Features\AwesomeCalculator.ListInstances\AwesomeCalculator.EventReceiver.cs">
+      <DependentUpon>AwesomeCalculator.ListInstances.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ContentTypeService.cs" />
+    <Compile Include="Services\IContentTypeService.cs" />
+    <Compile Include="Services\ILoggingService.cs" />
+    <Compile Include="Services\LoggingService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="AwesomeCalculator.snk" />
+    <None Include="ContentTypes\Addition\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{a83f8ad8-d1f3-4176-bd64-9d4e755a3ed0}</SharePointProjectItemId>
+    </None>
+    <None Include="ContentTypes\Subtraction\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{d45610c5-42f6-4863-b046-41c0d44443a2}</SharePointProjectItemId>
+    </None>
+    <None Include="Features\AwesomeCalculator.Fields\AwesomeCalculator.Fields.feature">
+      <FeatureId>{042c4a6e-95c0-458a-8609-d82a2cea75d8}</FeatureId>
+    </None>
+    <None Include="Features\AwesomeCalculator.ContentTypes\AwesomeCalculator.ContentTypes.feature">
+      <FeatureId>{13dc2adb-dcf2-4562-ad9f-cd925e9bbf58}</FeatureId>
+    </None>
+    <None Include="Features\AwesomeCalculator.ListInstances\AwesomeCalculator.ListInstances.feature">
+      <FeatureId>{c782a199-1da8-4a6d-93a1-83cd6e860761}</FeatureId>
+    </None>
+    <None Include="Fields\Fields\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{60ed9e30-7e2d-4581-af2b-752ff710f3b7}</SharePointProjectItemId>
+    </None>
+    <None Include="ListInstances\Operations\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{e3a22639-54be-4682-8645-f5c9b02464b8}</SharePointProjectItemId>
+    </None>
+    <None Include="Package\Package.package">
+      <PackageId>{e56da47b-9e1b-47f3-9c28-973691eb3f08}</PackageId>
+    </None>
+    <None Include="Package\Package.Template.xml">
+      <DependentUpon>Package.package</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ContentTypes\Addition\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ContentTypes\Subtraction\Elements.xml" />
+    <Content Include="Features\AwesomeCalculator.ListInstances\AwesomeCalculator.ListInstances.Template.xml">
+      <DependentUpon>AwesomeCalculator.ListInstances.feature</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ListInstances\Operations\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Features\AwesomeCalculator.Fields\AwesomeCalculator.Fields.Template.xml">
+      <DependentUpon>AwesomeCalculator.Fields.feature</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Features\AwesomeCalculator.ContentTypes\AwesomeCalculator.ContentTypes.Template.xml">
+      <DependentUpon>AwesomeCalculator.ContentTypes.feature</DependentUpon>
+    </Content>
+    <Content Include="Fields\Fields\Elements.xml" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" Condition="'$(VSToolsPath)' != ''" />
+</Project>

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x01003e21e0211f544804b9e6c5402e381261"
+               Name="Subtraction"
+               Group="AwesomeCalculator Content Types"
+               Description="Subtracts the values of Number1 and Number2" Version="0" Inherits="TRUE">
+    <FieldRefs>
+      <FieldRef ID="{A0D6B488-7FEA-4340-A826-67B9B48A4FF1}" Name="Number1" Required="TRUE"/>
+      <FieldRef ID="{E9D5F44A-F520-467D-9938-B328DBE17D26}" Name="Number2" Required="TRUE"/>
+      <FieldRef ID="{779E00A8-3977-408D-BF90-8EBCA7114713}" Name="Result"/>
+    </FieldRefs>
+    <XmlDocuments>
+      <XmlDocument NamespaceURI="http://schemas.microsoft.com/sharepoint/events">
+        <Receivers xmlns:spe="http://schemas.microsoft.com/sharepoint/events">
+          <Receiver>
+            <Name>ItemAdding</Name>
+            <Type>ItemAdding</Type>
+            <SequenceNumber>10000</SequenceNumber>
+            <Assembly>AwesomeCalculator, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6243f69a1bdc7625</Assembly>
+            <Class>AwesomeCalculator.EventReceivers.SubtractionEventReceiver</Class>
+            <Data></Data>
+            <Filter></Filter>
+          </Receiver>
+        </Receivers>
+      </XmlDocument>
+    </XmlDocuments>
+  </ContentType>
+</Elements>

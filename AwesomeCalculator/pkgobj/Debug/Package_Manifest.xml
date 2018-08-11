@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="e56da47b-9e1b-47f3-9c28-973691eb3f08" SharePointProductVersion="15.0">
+  <Assemblies>
+    <Assembly Location="AwesomeCalculator.dll" DeploymentTarget="GlobalAssemblyCache" />
+  </Assemblies>
+  <FeatureManifests>
+    <FeatureManifest Location="AwesomeCalculator_AwesomeCalculator.Fields\Feature.xml" />
+    <FeatureManifest Location="AwesomeCalculator_AwesomeCalculator.ContentTypes\Feature.xml" />
+    <FeatureManifest Location="AwesomeCalculator_AwesomeCalculator.ListInstances\Feature.xml" />
+  </FeatureManifests>
+</Solution>

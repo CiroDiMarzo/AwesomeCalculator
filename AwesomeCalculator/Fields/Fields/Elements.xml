@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+
+  <Field ID="{A0D6B488-7FEA-4340-A826-67B9B48A4FF1}"
+         Name="Number1"
+         DisplayName="Number1"
+         Type="Number"
+         Required="TRUE"
+         Group="AwesomeCalculator Fields">
+  </Field>
+
+  <Field ID="{E9D5F44A-F520-467D-9938-B328DBE17D26}"
+         Name="Number2"
+         DisplayName="Number2"
+         Type="Number"
+         Required="TRUE"
+         Group="AwesomeCalculator Fields">
+  </Field>
+
+  <Field ID="{779E00A8-3977-408D-BF90-8EBCA7114713}"
+         Name="Result"
+         DisplayName="Result"
+         Type="Number"
+         Required="FALSE"
+         Group="AwesomeCalculator Fields">
+  </Field>
+  
+</Elements>
