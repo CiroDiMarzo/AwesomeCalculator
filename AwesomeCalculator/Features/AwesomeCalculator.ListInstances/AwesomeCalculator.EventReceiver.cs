@@ -4,6 +4,8 @@ using System.Security.Permissions;
 using Microsoft.SharePoint;
 using AwesomeCalculator.Services;
 using AwesomeCalculator.Constants;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 
 namespace AwesomeCalculator.Features.AwesomeCalculator.ListInstances
 {
@@ -33,18 +35,42 @@ namespace AwesomeCalculator.Features.AwesomeCalculator.ListInstances
                 SPContentType addContentType = BindEventReceiver(ContentTypesId.Addition, _additionEventReceiverClassName, web);
                 SPContentType subContentType = BindEventReceiver(ContentTypesId.Subtraction, _subtractionEventReceiverClassName, web);
 
-                SPList list = web.Lists.TryGetList(InternalNames.Lists.Operations);
-                if (list != null)
-                {
-                    list.ContentTypesEnabled = true;
-                    list.ContentTypes.Add(addContentType);
-                    list.ContentTypes.Add(subContentType);
-                    list.Update();
-                }
+                BindListContentType(InternalNames.Lists.Operations, addContentType, web);
+                BindListContentType(InternalNames.Lists.Operations, subContentType, web);
+
+                CreateView("Result View",  InternalNames.Lists.Operations, new string[] { InternalNames.Fields.Number1, InternalNames.Fields.Number2, InternalNames.Fields.Result }, web);
             }
             finally
             {
                 web.AllowUnsafeUpdates = false;
+            }
+        }
+
+        private void CreateView(string viewName, string listTitle, string[] viewFields, SPWeb web)
+        {
+            SPList list = web.Lists.TryGetList(listTitle);
+            if (list != null)
+            {
+                StringCollection viewFieldNames = new StringCollection();
+                foreach (var viewField in viewFields)
+                {
+                    viewFieldNames.Add(viewField);
+                }
+                SPViewCollection views = list.Views;
+                views.Add(viewName, viewFieldNames, null, 100, true, true);
+                list.Update();
+                web.Update();
+            }
+        }
+
+        private static void BindListContentType(string listTitle, SPContentType addContentType, SPWeb web)
+        {
+            SPList list = web.Lists.TryGetList(listTitle);
+            if (list != null)
+            {
+                list.ContentTypesEnabled = true;
+                list.ContentTypes.Add(addContentType);
+                list.Update();
             }
         }
 
