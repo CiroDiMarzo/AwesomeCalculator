@@ -1,4 +1,0 @@
-c:\users\ciro\documents\visual studio 2013\Projects\AwesomeCalculator\AwesomeCalculator\bin\Debug\AwesomeCalculator.dll
-c:\users\ciro\documents\visual studio 2013\Projects\AwesomeCalculator\AwesomeCalculator\bin\Debug\AwesomeCalculator.pdb
-c:\users\ciro\documents\visual studio 2013\Projects\AwesomeCalculator\AwesomeCalculator\obj\Debug\AwesomeCalculator.dll
-c:\users\ciro\documents\visual studio 2013\Projects\AwesomeCalculator\AwesomeCalculator\obj\Debug\AwesomeCalculator.pdb

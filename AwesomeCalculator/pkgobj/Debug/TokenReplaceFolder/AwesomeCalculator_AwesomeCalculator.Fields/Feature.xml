@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Feature xmlns="http://schemas.microsoft.com/sharepoint/" Title="AwesomeCalculator Fields" Description="Installs the fields required for the AwesomeCalculator site" Id="811f7511-2a33-43f4-a2c6-bbbaa7bf9c66" Scope="Site">
-  <ElementManifests>
-    <ElementManifest Location="Fields\Elements.xml" />
-  </ElementManifests>
-</Feature>

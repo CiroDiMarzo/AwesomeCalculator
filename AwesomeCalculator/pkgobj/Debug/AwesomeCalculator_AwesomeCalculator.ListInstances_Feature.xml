@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Feature xmlns="http://schemas.microsoft.com/sharepoint/" ReceiverAssembly="$SharePoint.Project.AssemblyFullName$" ReceiverClass="$SharePoint.Type.ad233b36-630a-4680-ac84-eacdf34426b4.FullName$" Title="AwesomeCalculator List Instances" Description="Creates the instance of the list Operations required by the AwesomeCalculator site" Id="34bd8858-97c0-4ba2-89c6-8f0adb9a85a6" Scope="Web">
-  <ElementManifests>
-    <ElementManifest Location="Operations\Elements.xml" />
-  </ElementManifests>
-</Feature>
