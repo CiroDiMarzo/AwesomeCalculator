@@ -51,10 +51,12 @@
     <Reference Include="Microsoft.SharePoint.Client.ServerRuntime" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants\ContentTypesId.cs" />
-    <Compile Include="Constants\InternalNames.cs" />
+    <Compile Include="Constants\Constants.cs" />
     <Compile Include="EventReceivers\SubtractionEventReceiver.cs" />
     <Compile Include="EventReceivers\AdditionEventReceiver.cs" />
+    <Compile Include="Features\AwesomeCalculator.ContentTypes\AwesomeCalculator.EventReceiver.cs">
+      <DependentUpon>AwesomeCalculator.ContentTypes.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\AwesomeCalculator.ListInstances\AwesomeCalculator.EventReceiver.cs">
       <DependentUpon>AwesomeCalculator.ListInstances.feature</DependentUpon>
     </Compile>

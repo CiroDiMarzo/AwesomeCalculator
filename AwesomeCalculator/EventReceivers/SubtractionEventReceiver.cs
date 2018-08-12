@@ -34,12 +34,12 @@ namespace AwesomeCalculator.EventReceivers
         {
             try
             {
-                string sNumber1 = GetProperty(properties, InternalNames.Fields.Number1).ToString();
-                string sNumber2 = GetProperty(properties, InternalNames.Fields.Number2).ToString();
+                string sNumber1 = GetProperty(properties, Constants.Fields.Number1).ToString();
+                string sNumber2 = GetProperty(properties, Constants.Fields.Number2).ToString();
 
                 _loggingService.LogInfo("Subtracting {0} and {1}", sNumber1, sNumber2);
 
-                properties.AfterProperties[InternalNames.Fields.Result] = float.Parse(sNumber1) - float.Parse(sNumber2);
+                properties.AfterProperties[Constants.Fields.Result] = float.Parse(sNumber1) - float.Parse(sNumber2);
             }
             catch (Exception e)
             {
