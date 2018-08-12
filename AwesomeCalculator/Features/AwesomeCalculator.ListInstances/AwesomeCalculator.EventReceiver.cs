@@ -21,9 +21,6 @@ namespace AwesomeCalculator.Features.AwesomeCalculator.ListInstances
     {
         private readonly ILoggingService _loggingService;
         private readonly IContentTypeService _contentTypeService;
-        private readonly string _additionEventReceiverClassName = "AwesomeCalculator.EventReceivers.AdditionEventReceiver";
-        private readonly string _subtractionEventReceiverClassName = "AwesomeCalculator.EventReceivers.SubtractionEventReceiver";
-        private readonly string _assemblyName = "AwesomeCalculator, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6243f69a1bdc7625";
 
         public override void FeatureActivated(SPFeatureReceiverProperties properties)
         {

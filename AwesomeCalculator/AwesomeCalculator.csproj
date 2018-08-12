@@ -42,15 +42,27 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.SharePoint" />
     <Reference Include="Microsoft.SharePoint.Client.ServerRuntime" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalculatorWebPart\CalculatorWebPart.ascx.cs">
+      <DependentUpon>CalculatorWebPart.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="CalculatorWebPart\CalculatorWebPart.ascx.g.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CalculatorWebPart.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="EventReceivers\SubtractionEventReceiver.cs" />
     <Compile Include="EventReceivers\AdditionEventReceiver.cs" />
@@ -68,6 +80,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="AwesomeCalculator.snk" />
+    <None Include="CalculatorWebPart\CalculatorWebPart.webpart" />
+    <None Include="CalculatorWebPart\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{7fd628e5-7137-4a40-a403-1b02e6399e72}</SharePointProjectItemId>
+    </None>
     <None Include="ContentTypes\Addition\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a83f8ad8-d1f3-4176-bd64-9d4e755a3ed0}</SharePointProjectItemId>
     </None>
@@ -83,6 +99,9 @@
     <None Include="Features\AwesomeCalculator.ListInstances\AwesomeCalculator.ListInstances.feature">
       <FeatureId>{c782a199-1da8-4a6d-93a1-83cd6e860761}</FeatureId>
     </None>
+    <None Include="Features\AwesomeCalculator.WebParts\AwesomeCalculator.WebParts.feature">
+      <FeatureId>{8860f928-e735-45e4-b473-46ef05ffd383}</FeatureId>
+    </None>
     <None Include="Fields\Fields\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{60ed9e30-7e2d-4581-af2b-752ff710f3b7}</SharePointProjectItemId>
     </None>
@@ -95,8 +114,16 @@
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
+    <None Include="ScriptsModule\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{8355704f-a13e-4101-92d2-120e08d8ed20}</SharePointProjectItemId>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CalculatorWebPart\CalculatorWebPart.ascx">
+      <Generator>SharePointWebPartCodeGenerator</Generator>
+      <LastGenOutput>CalculatorWebPart.ascx.g.cs</LastGenOutput>
+    </Content>
+    <Content Include="CalculatorWebPart\Elements.xml" />
     <Content Include="ContentTypes\Addition\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -105,9 +132,15 @@
       <DependentUpon>AwesomeCalculator.ListInstances.feature</DependentUpon>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Features\AwesomeCalculator.WebParts\AwesomeCalculator.WebParts.Template.xml">
+      <DependentUpon>AwesomeCalculator.WebParts.feature</DependentUpon>
+    </Content>
     <Content Include="ListInstances\Operations\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="ScriptsModule\awesome-calculator.js" />
+    <Content Include="ScriptsModule\Elements.xml" />
+    <Content Include="ScriptsModule\jquery-3.3.1.min.js" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Features\AwesomeCalculator.Fields\AwesomeCalculator.Fields.Template.xml">
