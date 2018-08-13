@@ -27,5 +27,10 @@ namespace AwesomeCalculator.CalculatorWebPart
         protected void Page_Load(object sender, EventArgs e)
         {
         }
+
+        protected void btnTest_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

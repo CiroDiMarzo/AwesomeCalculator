@@ -39,6 +39,10 @@ namespace AwesomeCalculator.CalculatorWebPart {
     
     public partial class CalculatorWebPart {
         
+        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
+            "artCodeGenerator", "12.0.0.0")]
+        protected global::System.Web.UI.WebControls.Button btnTest;
+        
         [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebPartCodeGenerator", "12.0.0.0")]
         public static implicit operator global::System.Web.UI.TemplateControl(CalculatorWebPart target) 
         {
@@ -48,7 +52,26 @@ namespace AwesomeCalculator.CalculatorWebPart {
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
         [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
             "artCodeGenerator", "12.0.0.0")]
+        private global::System.Web.UI.WebControls.Button @__BuildControlbtnTest() {
+            global::System.Web.UI.WebControls.Button @__ctrl;
+            @__ctrl = new global::System.Web.UI.WebControls.Button();
+            this.btnTest = @__ctrl;
+            @__ctrl.ApplyStyleSheetSkin(this.Page);
+            @__ctrl.ID = "btnTest";
+            @__ctrl.Text = "Run Test";
+            @__ctrl.Click -= new System.EventHandler(this.btnTest_Click);
+            @__ctrl.Click += new System.EventHandler(this.btnTest_Click);
+            return @__ctrl;
+        }
+        
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
+        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
+            "artCodeGenerator", "12.0.0.0")]
         private void @__BuildControlTree(global::AwesomeCalculator.CalculatorWebPart.CalculatorWebPart @__ctrl) {
+            global::System.Web.UI.WebControls.Button @__ctrl1;
+            @__ctrl1 = this.@__BuildControlbtnTest();
+            System.Web.UI.IParserAccessor @__parser = ((System.Web.UI.IParserAccessor)(@__ctrl));
+            @__parser.AddParsedSubObject(@__ctrl1);
             @__ctrl.SetRenderMethodDelegate(new System.Web.UI.RenderMethod(this.@__Render__control1));
         }
         
@@ -56,23 +79,32 @@ namespace AwesomeCalculator.CalculatorWebPart {
         [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
             "artCodeGenerator", "12.0.0.0")]
         private void @__Render__control1(System.Web.UI.HtmlTextWriter @__w, System.Web.UI.Control parameterContainer) {
-            @__w.Write(@"
-
-<label for=""number1"">Number 1:</label>
-<input type=""text"" id=""number1"" placeholder=""number 1"" />
-<label for=""number2"">Number 2:</label>
-<input type=""text"" id=""number2"" placeholder=""number 2"" />
-
-<button id=""btnSaveItem"" value=""Save item"" onclick=""onSaveItemClick()"">Save Item</button>
-<button id=""btnTotal"" value=""Total"" onclick=""onTotalClick()"">Total</button>
-
-<script type=""text/javascript"" src=""");
+            @__w.Write("\r\n\r\n<style>\r\n    div.field {\r\n        margin: 10px 0px 20px 0px;\r\n    }\r\n    div." +
+                    "field button {\r\n        margin-right:10px;\r\n    }\r\n    div.field label {\r\n      " +
+                    "  margin-right:20px\r\n    }\r\n    div.field input {\r\n        margin-right: 10px;\r\n" +
+                    "    }\r\n    div.field a {\r\n        cursor: pointer;\r\n        background-color: wh" +
+                    "ite;\r\n        padding: 7px;\r\n        font-size: smaller;\r\n        border: 1px so" +
+                    "lid darkgrey;\r\n    }\r\n</style>\r\n\r\n<div class=\"field\">\r\n    <label for=\"number1\">" +
+                    "Number 1:</label>\r\n    <input type=\"text\" id=\"number1\" placeholder=\"number 1\" />" +
+                    "\r\n</div>\r\n<div class=\"field\">\r\n    <label for=\"number2\">Number 2:</label>\r\n    <" +
+                    "input type=\"text\" id=\"number2\" placeholder=\"number 2\" />\r\n</div>\r\n<div class=\"fi" +
+                    "eld\">\r\n    <label for=\"sum\" style=\"min-width: 50px;\">Addition</label>\r\n    <inpu" +
+                    "t type=\"radio\" name=\"operation\" id=\"sum\" value=\"sum\" checked=\"checked\" />\r\n    <" +
+                    "label for=\"sub\" style=\"min-width: 50px;\">Subtraction</label>\r\n    <input type=\"r" +
+                    "adio\" name=\"operation\" id=\"sub\" value=\"sub\" />\r\n</div>\r\n<div class=\"field\">\r\n   " +
+                    " <a id=\"btnSaveItem\" onclick=\"save()\">Save Item</a>\r\n    <a id=\"btnTotal\" onclic" +
+                    "k=\"readTotal()\">Total</a>\r\n</div>\r\n<div class=\"field\">\r\n    <table>\r\n        <tr" +
+                    ">\r\n            <th>Number 1</th>\r\n            <th>Number 2</th>\r\n            <th" +
+                    ">Result</th>\r\n        </tr>\r\n        <tr>\r\n            <td id=\"number1Result\"></" +
+                    "td>\r\n            <td id=\"number2Result\"></td>\r\n            <td id=\"result\"></td>" +
+                    "\r\n        </tr>\r\n    </table>\r\n</div>\r\n<script type=\"text/javascript\" src=\"");
                             @__w.Write( SPContext.Current.Site.RootWeb.Url + "/SiteAssets/Scripts/jquery-3.3.1.min.js" );
 
             @__w.Write("\"></script>\r\n<script type=\"text/javascript\" src=\"");
                             @__w.Write( SPContext.Current.Site.RootWeb.Url + "/SiteAssets/Scripts/awesome-calculator.js" );
 
-            @__w.Write("\"></script>");
+            @__w.Write("\"></script>\r\n\r\n");
+            parameterContainer.Controls[0].RenderControl(@__w);
         }
         
         [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +

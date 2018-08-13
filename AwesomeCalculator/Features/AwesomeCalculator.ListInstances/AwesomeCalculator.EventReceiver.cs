@@ -35,7 +35,7 @@ namespace AwesomeCalculator.Features.AwesomeCalculator.ListInstances
                 BindListContentType(Lists.Operations, addContentType, web);
                 BindListContentType(Lists.Operations, subContentType, web);
 
-                CreateView("Result View", Lists.Operations, new string[] { "ContentType", Fields.Number1, Fields.Number2, Fields.Result }, web);
+                CreateView("Result View", Lists.Operations, new string[] { "ID", "ContentType", Fields.Number1, Fields.Number2, Fields.Result }, web);
             }
             finally
             {
