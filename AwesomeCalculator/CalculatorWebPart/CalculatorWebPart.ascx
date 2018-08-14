@@ -8,15 +8,22 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CalculatorWebPart.ascx.cs" Inherits="AwesomeCalculator.CalculatorWebPart.CalculatorWebPart" %>
 
 <style>
+    div.container {
+        width: 75%;
+    }
+
     div.field {
         margin: 10px 0px 20px 0px;
     }
+
     div.field button {
-        margin-right:10px;
+        margin-right: 10px;
     }
+
     div.field label {
-        margin-right:20px
+        margin-right: 20px;
     }
+
     div.field input {
         margin-right: 10px;
     }
@@ -26,40 +33,67 @@
         padding: 7px;
         font-size: smaller;
         border: 1px solid darkgrey;
+        width: 50px;
+        text-align: center;
+        margin-right: 5px;
+        margin-bottom: 20px;
+        float:left;
+    }
+    div.field a:hover {
+        border-color: #92c0e0;
+        background-color: #e6f2fa;
+        text-decoration:none;
+    }
+    div.field table {
+        width: 100%;
+    }
+    div.field table th {
+        border-bottom: 2px solid grey;
+        color: grey;
+        font-weight: normal;
+        font-size: 0.85em;
+    }
+    div.field table td {
+        padding: 5px;
+        border-bottom: 1px solid lightgrey;
+    }
+    div.field table td, th {
+        padding: 5px;
     }
 </style>
-
-<div class="field">
-    <label for="number1">Number 1:</label>
-    <input type="text" id="number1" placeholder="number 1" />
-</div>
-<div class="field">
-    <label for="number2">Number 2:</label>
-    <input type="text" id="number2" placeholder="number 2" />
-</div>
-<div class="field">
-    <label for="sum" style="min-width: 50px;">Addition</label>
-    <input type="radio" name="operation" id="sum" value="sum" checked="checked" />
-    <label for="sub" style="min-width: 50px;">Subtraction</label>
-    <input type="radio" name="operation" id="sub" value="sub" />
-</div>
-<div class="field">
-    <a id="btnSaveItem" onclick="save()">Save Item</a>
-    <a id="btnTotal" onclick="readTotal()">Total</a>
-</div>
-<div class="field">
-    <table>
-        <tr>
-            <th>Number 1</th>
-            <th>Number 2</th>
-            <th>Result</th>
-        </tr>
-        <tr>
-            <td id="number1Result"></td>
-            <td id="number2Result"></td>
-            <td id="result"></td>
-        </tr>
-    </table>
+<div class="container">
+    <div class="field">
+        <label for="number1">Number 1:</label>
+        <input type="text" id="number1" placeholder="number 1" />
+    </div>
+    <div class="field">
+        <label for="number2">Number 2:</label>
+        <input type="text" id="number2" placeholder="number 2" />
+    </div>
+    <div class="field">
+        <label for="sum" style="min-width: 50px;">Addition</label>
+        <input type="radio" name="operation" id="sum" value="sum" checked="checked" />
+        <label for="sub" style="min-width: 50px;">Subtraction</label>
+        <input type="radio" name="operation" id="sub" value="sub" />
+    </div>
+    <div class="field">
+        <a id="btnSaveItem">OK</a>
+        <a id="btnTotal">Total</a>
+    </div>
+    <div class="field">
+        <table>
+            <tr>
+                <th>Number 1</th>
+                <th>Number 2</th>
+                <th>Result</th>
+            </tr>
+            <tr>
+                <td id="number1Result"></td>
+                <td id="number2Result"></td>
+                <td id="result"></td>
+            </tr>
+        </table>
+    </div>
 </div>
 <script type="text/javascript" src="<%= SPContext.Current.Site.RootWeb.Url + "/SiteAssets/Scripts/jquery-3.3.1.min.js" %>"></script>
 <script type="text/javascript" src="<%= SPContext.Current.Site.RootWeb.Url + "/SiteAssets/Scripts/awesome-calculator.js" %>"></script>
