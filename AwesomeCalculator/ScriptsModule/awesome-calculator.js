@@ -1,12 +1,27 @@
-﻿(function () {
-
+﻿
+(function () {
+    /*
+    * Wrapper around jQuery for the API calls
+    */
     var ApiService = function () {
+        this.get = function (url, success, fail) {
+            $.get(url)
+                .done(function (data) {
+                    success(data);
+                })
+                .fail(function (error) {
+                    fail(error.statusError)
+                });
+        }
     }
 
+    /*
+    * Wrapper around the SharePoint JavaScript object model
+    */
     var SharePointService = function () {
-        this.listItemCollection;
-        this.listContentTypes;
-        this.listItem;
+        this.listItemCollection = null;
+        this.listContentTypes = null;
+        this.listItem = null;
 
         this.getAll = function (listName, viewXml, success, fail) {
             var clientContext = new SP.ClientContext.get_current();
@@ -55,7 +70,14 @@
         }
     }
 
+    /*
+    * Implements the business logic of the awesome calculator. Depends on the SharePointService to
+    * communicate with SharePoint and on the ApiService to communicate with external REST endpoints
+    */
     var CalculatorService = function () {
+        this.sharePointService = new SharePointService();
+        this.apiService = new ApiService();
+
         this.listName = 'Operations';
         this.resultFieldName = 'Result';
         this.additionCtName = 'Addition';
@@ -65,19 +87,29 @@
         this.contentTypeIdFieldName = 'ContentTypeId';
         this.additionCtId = '';
         this.subtractionCtId = '';
+        this.exchangeRate = 0;
 
-        this.sharePointService = new SharePointService();
+        this.apiData = {
+            url: 'http://apilayer.net/',
+            action: 'api/live?',
+            accessKey: 'access_key=e3ea0c2f0d19edcf3657dae02857c76f&',
+            currencies: 'currencies=CHF&',
+            source: 'source=USD&format=1'
+        }
 
-        this.init = function (callback) {
+        this.init = function (success, fail) {
             var parent = this;
             this.sharePointService.getListContentTypes(this.listName,
                 function () {
-                    parent.contentTypeRetrievedSuccess(callback);
+                    parent.contentTypeRetrievedSuccess();
+                    parent.getExchangeRate(function () {
+                        success();
+                    });
                 },
                 this.initFail);
         }
 
-        this.contentTypeRetrievedSuccess = function (callback) {
+        this.contentTypeRetrievedSuccess = function () {
             var ctEnumerator = this.sharePointService.listContentTypes.getEnumerator();
             while (ctEnumerator.moveNext()) {
                 var ct = ctEnumerator.get_current();
@@ -89,10 +121,18 @@
                     this.subtractionCtId = ct.get_id();
                 }
             }
+        }
 
-            if (this.additionCtId != null && this.subtractionCtId != null) {
-                callback();
-            }
+        this.getExchangeRate = function (success) {
+            var parent = this;
+            this.apiService.get(this.apiData.url + this.apiData.action + this.apiData.accessKey + this.apiData.currencies + this.apiData.source,
+                function (data) {
+                    parent.exchangeRate = parseFloat(data.quotes['USDCHF']).toFixed(4);
+                    success();
+                },
+                function(errorMessage) {
+                    parent.getExchangeRateFail(errorMessage);
+                })
         }
 
         this.sum = function (number1, number2, success, fail) {
@@ -140,16 +180,16 @@
 
         this.sumResults = function (callback) {
             var total = 0;
-            var enumerator = parent.sharePointService.listItemCollection.getEnumerator();
+            var enumerator = this.sharePointService.listItemCollection.getEnumerator();
             while (enumerator.moveNext()) {
                 var listItem = enumerator.get_current();
-                var itemValue = listItem.get_item(parent.sResultField);
+                var itemValue = listItem.get_item(this.resultFieldName);
                 var numberValue = parseFloat(itemValue);
                 if (!isNaN(numberValue)) {
                     total += numberValue;
                 }
             }
-            callback(total);
+            callback(total, total * this.exchangeRate);
         }
 
         this.getTotalFail = function () {
@@ -163,48 +203,34 @@
         this.initFail = function () {
             console.log('init fail');
         }
+
+        this.getExchangeRateFail = function (errorMessage) {
+            console.log('get exchange rate fail: ' + errorMessage);
+        }
     }
 
+    /*
+    * Below there's data and event binding
+    */
     var calculatorService = new CalculatorService();
-    var apiService = new ApiService();
 
     bindEvents(contentTypeRequestPending, contentTypeRequestPending);
 
     ExecuteOrDelayUntilScriptLoaded(init, "sp.js");
 
-    ExecuteOrDelayUntilScriptLoaded(getLatestExchangeRate, "sp.js");
-
     function init() {
         calculatorService.init(function () {
+            displayExchangeRate();
             unbindEvents('click');
             bindEvents(save, getTotal);
-        });
+        }, fail);
     }
 
-    function getLatestExchangeRate() {
-        var url = 'http://apilayer.net/';
-        var action = 'api/live?'
-        var accessKey = 'access_key=e3ea0c2f0d19edcf3657dae02857c76f&';
-        var currencies = 'currencies=CHF&';
-        var source = 'source=USD&format=1';
-        exchangeRate = 0.9935;
-        $('#txtExRate').text('exchange rate: ' + exchangeRate);
-        $('#quotesSource').attr('href', url);
+    function displayExchangeRate() {
+        $('#txtExRate').text('exchange rate: ' + calculatorService.exchangeRate);
+        $('#quotesSource').attr('href', calculatorService.apiData.url);
         $('#quotesSource').css('visibility', 'visible');
         $('#quotesSource').attr('target', '_blank');
-        //$.get(url + action + accessKey + currencies + source, function (data) {
-        //})
-        //.done(function (data) {
-        //    exchangeRate = parseFloat(data.quotes['USDCHF']).toFixed(4);
-        //    $('#txtExRate').text('exchange rate: ' + exchangeRate);
-        //    $('#quotesSource').attr('href', url);
-        //    $('#quotesSource').css('visibility', 'visible');
-        //    $('#quotesSource').attr('target', '_blank');
-        //})
-        //.fail(function (error) {
-        //    alert('fail...' + error.statusText)
-        //})
-        //.always();
     }
 
     function bindEvents(saveHandler, readTotalHandler) {
@@ -246,8 +272,8 @@
     }
 
     function getTotal() {
-        calculatorService.getTotal(function (total) {
-            $('#txtTotal').text('Total: ' + total + ' USD - ' + total * exchangeRate + ' CHF');
+        calculatorService.getTotal(function (total, totalConverted) {
+            $('#txtTotal').text('Total: ' + total + ' USD / ' + totalConverted + ' CHF');
         },
         fail);
     }

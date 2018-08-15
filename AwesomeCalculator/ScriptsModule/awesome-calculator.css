@@ -1,64 +1,74 @@
 ﻿div.container {
-        width: 75%;
-    }
+    width: 75%;
+}
 
-    div.field {
-        margin: 10px 0px 20px 0px;
-        min-height: 28px;
-        margin-right:28px;
-    }
+div.field {
+    margin: 10px 0px 20px 0px;
+    min-height: 28px;
+    margin-right: 28px;
+}
 
-    div.field button {
-        margin-right: 10px;
-    }
+div.field button {
+    margin-right: 10px;
+}
 
-    div.field label {
-        margin-right: 20px;
-    }
+div.field label {
+    margin-right: 20px;
+}
 
-    div.field input {
-        margin-right: 10px;
-    }
-    div.field a:hover {
-        border-color: #92c0e0;
-        background-color: #e6f2fa;
-        text-decoration:none;
-    }
-    div.field table {
-        width: 100%;
-    }
-    div.field table th {
-        border-bottom: 2px solid grey;
-        color: grey;
-        font-weight: normal;
-        font-size: 0.85em;
-    }
-    div.field table td {
-        padding: 5px;
-        border-bottom: 1px solid lightgrey;
-    }
-    div.field table td, th {
-        padding: 5px;
-    }
-    div.field a, span {
-        margin-right: 5px;
-    }
-    a.link-btn {
-        cursor: pointer;
-        background-color: white;
-        padding: 7px;
-        font-size: smaller;
-        border: 1px solid darkgrey;
-        width: 50px;
-        text-align: center;
-    }
-    .fl {
-        float: left;
-    }
-    .overflow {
-        overflow:auto;
-        min-height: 100px;
-    }
-    .small {
-        font-size: 0.85em;
-    }
+div.field input {
+    margin-right: 10px;
+}
+
+div.field a:hover {
+    border-color: #92c0e0;
+    background-color: #e6f2fa;
+    text-decoration: none;
+}
+
+div.field table {
+    width: 100%;
+}
+
+div.field table th {
+    border-bottom: 2px solid grey;
+    color: grey;
+    font-weight: normal;
+    font-size: 0.85em;
+}
+
+div.field table td {
+    padding: 5px;
+    border-bottom: 1px solid lightgrey;
+}
+
+div.field table td, th {
+    padding: 5px;
+}
+
+div.field a, span {
+    margin-right: 5px;
+}
+
+a.link-btn {
+    cursor: pointer;
+    background-color: white;
+    padding: 7px;
+    font-size: smaller;
+    border: 1px solid darkgrey;
+    width: 50px;
+    text-align: center;
+}
+
+.fl {
+    float: left;
+}
+
+.overflow {
+    overflow: auto;
+    min-height: 100px;
+}
+
+.small {
+    font-size: 0.85em;
+}

@@ -74,7 +74,7 @@ namespace AwesomeCalculator.Features.AwesomeCalculator.ListInstances
         private SPContentType GetContentType(string contentTypeGuid, SPWeb web)
         {
             SPContentTypeId contentTypeId = new SPContentTypeId(contentTypeGuid);
-            SPContentType contentType = web.ContentTypes[contentTypeId];
+            SPContentType contentType = web.Site.RootWeb.ContentTypes[contentTypeId];
             return contentType;
         }
 
