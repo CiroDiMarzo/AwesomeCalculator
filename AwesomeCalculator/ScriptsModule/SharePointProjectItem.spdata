@@ -4,5 +4,6 @@
     <ProjectItemFile Source="Elements.xml" Target="ScriptsModule\" Type="ElementManifest" />
     <ProjectItemFile Source="jquery-3.3.1.min.js" Target="ScriptsModule\" Type="ElementFile" />
     <ProjectItemFile Source="awesome-calculator.js" Target="ScriptsModule\" Type="ElementFile" />
+    <ProjectItemFile Source="awesome-calculator.css" Target="ScriptsModule\" Type="ElementFile" />
   </Files>
 </ProjectItem>

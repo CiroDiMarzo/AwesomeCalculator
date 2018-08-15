@@ -7,78 +7,37 @@
 <%@ Register TagPrefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="CalculatorWebPart.ascx.cs" Inherits="AwesomeCalculator.CalculatorWebPart.CalculatorWebPart" %>
 
-<style>
-    div.container {
-        width: 75%;
-    }
+<link rel="stylesheet" href="<%= SPContext.Current.Site.RootWeb.Url + "/SiteAssets/Css/awesome-calculator.css" %>" />
 
-    div.field {
-        margin: 10px 0px 20px 0px;
-    }
-
-    div.field button {
-        margin-right: 10px;
-    }
-
-    div.field label {
-        margin-right: 20px;
-    }
-
-    div.field input {
-        margin-right: 10px;
-    }
-    div.field a {
-        cursor: pointer;
-        background-color: white;
-        padding: 7px;
-        font-size: smaller;
-        border: 1px solid darkgrey;
-        width: 50px;
-        text-align: center;
-        margin-right: 5px;
-        margin-bottom: 20px;
-        float:left;
-    }
-    div.field a:hover {
-        border-color: #92c0e0;
-        background-color: #e6f2fa;
-        text-decoration:none;
-    }
-    div.field table {
-        width: 100%;
-    }
-    div.field table th {
-        border-bottom: 2px solid grey;
-        color: grey;
-        font-weight: normal;
-        font-size: 0.85em;
-    }
-    div.field table td {
-        padding: 5px;
-        border-bottom: 1px solid lightgrey;
-    }
-    div.field table td, th {
-        padding: 5px;
-    }
-</style>
 <div class="container">
-    <div class="field">
-        <label for="number1">Number 1:</label>
-        <input type="text" id="number1" placeholder="number 1" />
+    <div class="overflow">
+        <div class="fl">
+            <div class="field">
+                <label for="number1">Number 1:</label>
+                <input type="text" id="number1" placeholder="number 1" />
+            </div>
+            <div class="field">
+                <label for="number2">Number 2:</label>
+                <input type="text" id="number2" placeholder="number 2" />
+            </div>
+        </div>
+        <div class="fl">
+            <div class="field">
+                <input type="radio" name="operation" id="sum" value="sum" checked="checked" />
+                <label for="sum" style="min-width: 50px;">Addition</label>
+            </div>
+            <div class="field">
+                <input type="radio" name="operation" id="sub" value="sub" />
+                <label for="sub" style="min-width: 50px;">Subtraction</label>
+            </div>
+        </div>
     </div>
     <div class="field">
-        <label for="number2">Number 2:</label>
-        <input type="text" id="number2" placeholder="number 2" />
-    </div>
-    <div class="field">
-        <label for="sum" style="min-width: 50px;">Addition</label>
-        <input type="radio" name="operation" id="sum" value="sum" checked="checked" />
-        <label for="sub" style="min-width: 50px;">Subtraction</label>
-        <input type="radio" name="operation" id="sub" value="sub" />
-    </div>
-    <div class="field">
-        <a id="btnSaveItem">OK</a>
-        <a id="btnTotal">Total</a>
+        <a class="link-btn fl" id="btnSaveItem">OK</a>
+        <a class="link-btn fl" id="btnTotal">Total</a>
+        <span class="small fl" id="txtExRate"></span>
+        <a class="small fl" style="visibility:hidden" id="quotesSource">(source)</a>
+        <span class="fl" id="txtTotal"></span>
     </div>
     <div class="field">
         <table>

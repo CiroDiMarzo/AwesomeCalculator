@@ -138,6 +138,7 @@
     <Content Include="ListInstances\Operations\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="ScriptsModule\awesome-calculator.css" />
     <Content Include="ScriptsModule\awesome-calculator.js" />
     <Content Include="ScriptsModule\Elements.xml" />
     <Content Include="ScriptsModule\jquery-3.3.1.min.js" />

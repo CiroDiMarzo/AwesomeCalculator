@@ -79,35 +79,31 @@ namespace AwesomeCalculator.CalculatorWebPart {
         [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
             "artCodeGenerator", "12.0.0.0")]
         private void @__Render__control1(System.Web.UI.HtmlTextWriter @__w, System.Web.UI.Control parameterContainer) {
-            @__w.Write("\r\n\r\n<style>\r\n    div.container {\r\n        width: 75%;\r\n    }\r\n\r\n    div.field {\r\n" +
-                    "        margin: 10px 0px 20px 0px;\r\n    }\r\n\r\n    div.field button {\r\n        mar" +
-                    "gin-right: 10px;\r\n    }\r\n\r\n    div.field label {\r\n        margin-right: 20px;\r\n " +
-                    "   }\r\n\r\n    div.field input {\r\n        margin-right: 10px;\r\n    }\r\n    div.field" +
-                    " a {\r\n        cursor: pointer;\r\n        background-color: white;\r\n        paddin" +
-                    "g: 7px;\r\n        font-size: smaller;\r\n        border: 1px solid darkgrey;\r\n     " +
-                    "   width: 50px;\r\n        text-align: center;\r\n        margin-right: 5px;\r\n      " +
-                    "  margin-bottom: 20px;\r\n        float:left;\r\n    }\r\n    div.field a:hover {\r\n   " +
-                    "     border-color: #92c0e0;\r\n        background-color: #e6f2fa;\r\n        text-de" +
-                    "coration:none;\r\n    }\r\n    div.field table {\r\n        width: 100%;\r\n    }\r\n    d" +
-                    "iv.field table th {\r\n        border-bottom: 2px solid grey;\r\n        color: grey" +
-                    ";\r\n        font-weight: normal;\r\n        font-size: 0.85em;\r\n    }\r\n    div.fiel" +
-                    "d table td {\r\n        padding: 5px;\r\n        border-bottom: 1px solid lightgrey;" +
-                    "\r\n    }\r\n    div.field table td, th {\r\n        padding: 5px;\r\n    }\r\n</style>\r\n<" +
-                    "div class=\"container\">\r\n    <div class=\"field\">\r\n        <label for=\"number1\">Nu" +
-                    "mber 1:</label>\r\n        <input type=\"text\" id=\"number1\" placeholder=\"number 1\" " +
-                    "/>\r\n    </div>\r\n    <div class=\"field\">\r\n        <label for=\"number2\">Number 2:<" +
-                    "/label>\r\n        <input type=\"text\" id=\"number2\" placeholder=\"number 2\" />\r\n    " +
-                    "</div>\r\n    <div class=\"field\">\r\n        <label for=\"sum\" style=\"min-width: 50px" +
-                    ";\">Addition</label>\r\n        <input type=\"radio\" name=\"operation\" id=\"sum\" value" +
-                    "=\"sum\" checked=\"checked\" />\r\n        <label for=\"sub\" style=\"min-width: 50px;\">S" +
-                    "ubtraction</label>\r\n        <input type=\"radio\" name=\"operation\" id=\"sub\" value=" +
-                    "\"sub\" />\r\n    </div>\r\n    <div class=\"field\">\r\n        <a id=\"btnSaveItem\">OK</a" +
-                    ">\r\n        <a id=\"btnTotal\">Total</a>\r\n    </div>\r\n    <div class=\"field\">\r\n    " +
-                    "    <table>\r\n            <tr>\r\n                <th>Number 1</th>\r\n              " +
-                    "  <th>Number 2</th>\r\n                <th>Result</th>\r\n            </tr>\r\n       " +
-                    "     <tr>\r\n                <td id=\"number1Result\"></td>\r\n                <td id=" +
-                    "\"number2Result\"></td>\r\n                <td id=\"result\"></td>\r\n            </tr>\r" +
-                    "\n        </table>\r\n    </div>\r\n</div>\r\n<script type=\"text/javascript\" src=\"");
+            @__w.Write("\r\n\r\n<link rel=\"stylesheet\" href=\"");
+                     @__w.Write( SPContext.Current.Site.RootWeb.Url + "/SiteAssets/Css/awesome-calculator.css" );
+
+            @__w.Write("\" />\r\n\r\n<div class=\"container\">\r\n    <div class=\"overflow\">\r\n        <div class=\"" +
+                    "fl\">\r\n            <div class=\"field\">\r\n                <label for=\"number1\">Numb" +
+                    "er 1:</label>\r\n                <input type=\"text\" id=\"number1\" placeholder=\"numb" +
+                    "er 1\" />\r\n            </div>\r\n            <div class=\"field\">\r\n                <" +
+                    "label for=\"number2\">Number 2:</label>\r\n                <input type=\"text\" id=\"nu" +
+                    "mber2\" placeholder=\"number 2\" />\r\n            </div>\r\n        </div>\r\n        <d" +
+                    "iv class=\"fl\">\r\n            <div class=\"field\">\r\n                <input type=\"ra" +
+                    "dio\" name=\"operation\" id=\"sum\" value=\"sum\" checked=\"checked\" />\r\n               " +
+                    " <label for=\"sum\" style=\"min-width: 50px;\">Addition</label>\r\n            </div>\r" +
+                    "\n            <div class=\"field\">\r\n                <input type=\"radio\" name=\"oper" +
+                    "ation\" id=\"sub\" value=\"sub\" />\r\n                <label for=\"sub\" style=\"min-widt" +
+                    "h: 50px;\">Subtraction</label>\r\n            </div>\r\n        </div>\r\n    </div>\r\n " +
+                    "   <div class=\"field\">\r\n        <a class=\"link-btn fl\" id=\"btnSaveItem\">OK</a>\r\n" +
+                    "        <a class=\"link-btn fl\" id=\"btnTotal\">Total</a>\r\n        <span class=\"sma" +
+                    "ll fl\" id=\"txtExRate\"></span>\r\n        <a class=\"small fl\" style=\"visibility:hid" +
+                    "den\" id=\"quotesSource\">(source)</a>\r\n        <span class=\"fl\" id=\"txtTotal\"></sp" +
+                    "an>\r\n    </div>\r\n    <div class=\"field\">\r\n        <table>\r\n            <tr>\r\n   " +
+                    "             <th>Number 1</th>\r\n                <th>Number 2</th>\r\n             " +
+                    "   <th>Result</th>\r\n            </tr>\r\n            <tr>\r\n                <td id=" +
+                    "\"number1Result\"></td>\r\n                <td id=\"number2Result\"></td>\r\n           " +
+                    "     <td id=\"result\"></td>\r\n            </tr>\r\n        </table>\r\n    </div>\r\n</d" +
+                    "iv>\r\n<script type=\"text/javascript\" src=\"");
                             @__w.Write( SPContext.Current.Site.RootWeb.Url + "/SiteAssets/Scripts/jquery-3.3.1.min.js" );
 
             @__w.Write("\"></script>\r\n<script type=\"text/javascript\" src=\"");
