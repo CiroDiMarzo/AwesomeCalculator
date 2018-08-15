@@ -6,6 +6,8 @@ using AwesomeCalculator.Services;
 using AwesomeCalculator.Constants;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using Microsoft.SharePoint.WebPartPages;
+using System.Web.UI.WebControls.WebParts;
 
 namespace AwesomeCalculator.Features.AwesomeCalculator.ListInstances
 {
@@ -36,10 +38,34 @@ namespace AwesomeCalculator.Features.AwesomeCalculator.ListInstances
                 BindListContentType(Lists.Operations, subContentType, web);
 
                 CreateView("Result View", Lists.Operations, new string[] { "ID", "ContentType", Fields.Number1, Fields.Number2, Fields.Result }, web);
+
+                try
+                {
+                    AddWebPartToHome();
+                }
+                catch (Exception e)
+                {
+                    _loggingService.LogError(e.ToString());
+                }
             }
             finally
             {
                 //web.AllowUnsafeUpdates = false;
+            }
+        }
+
+        private void AddWebPartToHome()
+        {
+            SPWeb web = SPContext.Current.Web;
+            SPFile file = web.GetFile("SitePages/Home.aspx");
+            SPLimitedWebPartManager webPartManager = file.GetLimitedWebPartManager(PersonalizationScope.Shared);
+
+            using (System.Web.UI.WebControls.WebParts.WebPart calculatorWebPart = GetWebPart(web, "AwesomeCalculator_CalculatorWebPart.webpart"))
+            {
+                calculatorWebPart.ChromeType = PartChromeType.None;
+                calculatorWebPart.Title = "Calculator WebPart";
+                webPartManager.AddWebPart(calculatorWebPart, "Left", 1);
+                webPartManager.SaveChanges(calculatorWebPart);
             }
         }
 
@@ -76,6 +102,30 @@ namespace AwesomeCalculator.Features.AwesomeCalculator.ListInstances
             SPContentTypeId contentTypeId = new SPContentTypeId(contentTypeGuid);
             SPContentType contentType = web.Site.RootWeb.ContentTypes[contentTypeId];
             return contentType;
+        }
+
+        public static System.Web.UI.WebControls.WebParts.WebPart GetWebPart(SPWeb web, string webPartName)
+        {
+            var query = new SPQuery();
+            query.Query = String.Format("<Where><Eq><FieldRef Name='FileLeafRef'/><Value Type='File'>{0}</Value></Eq></Where>", webPartName);
+
+            SPList webPartGallery;
+            if (web.IsRootWeb)
+            {
+                webPartGallery = web.GetCatalog(SPListTemplateType.WebPartCatalog);
+            }
+            else
+            {
+                webPartGallery = web.ParentWeb.GetCatalog(SPListTemplateType.WebPartCatalog);
+            }
+            var webParts = webPartGallery.GetItems(query);
+            var typeName = webParts[0].GetFormattedValue("WebPartTypeName");
+            var assemblyName = webParts[0].GetFormattedValue("WebPartAssembly");
+            var webPartHandle = Activator.CreateInstance(
+                assemblyName, typeName);
+
+            var webPart = (System.Web.UI.WebControls.WebParts.WebPart)webPartHandle.Unwrap();
+            return webPart;
         }
 
 

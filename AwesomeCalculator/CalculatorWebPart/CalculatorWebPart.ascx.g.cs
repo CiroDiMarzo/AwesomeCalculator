@@ -39,10 +39,6 @@ namespace AwesomeCalculator.CalculatorWebPart {
     
     public partial class CalculatorWebPart {
         
-        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
-            "artCodeGenerator", "12.0.0.0")]
-        protected global::System.Web.UI.WebControls.Button btnTest;
-        
         [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebPartCodeGenerator", "12.0.0.0")]
         public static implicit operator global::System.Web.UI.TemplateControl(CalculatorWebPart target) 
         {
@@ -52,26 +48,7 @@ namespace AwesomeCalculator.CalculatorWebPart {
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
         [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
             "artCodeGenerator", "12.0.0.0")]
-        private global::System.Web.UI.WebControls.Button @__BuildControlbtnTest() {
-            global::System.Web.UI.WebControls.Button @__ctrl;
-            @__ctrl = new global::System.Web.UI.WebControls.Button();
-            this.btnTest = @__ctrl;
-            @__ctrl.ApplyStyleSheetSkin(this.Page);
-            @__ctrl.ID = "btnTest";
-            @__ctrl.Text = "Run Test";
-            @__ctrl.Click -= new System.EventHandler(this.btnTest_Click);
-            @__ctrl.Click += new System.EventHandler(this.btnTest_Click);
-            return @__ctrl;
-        }
-        
-        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
-        [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +
-            "artCodeGenerator", "12.0.0.0")]
         private void @__BuildControlTree(global::AwesomeCalculator.CalculatorWebPart.CalculatorWebPart @__ctrl) {
-            global::System.Web.UI.WebControls.Button @__ctrl1;
-            @__ctrl1 = this.@__BuildControlbtnTest();
-            System.Web.UI.IParserAccessor @__parser = ((System.Web.UI.IParserAccessor)(@__ctrl));
-            @__parser.AddParsedSubObject(@__ctrl1);
             @__ctrl.SetRenderMethodDelegate(new System.Web.UI.RenderMethod(this.@__Render__control1));
         }
         
@@ -109,8 +86,7 @@ namespace AwesomeCalculator.CalculatorWebPart {
             @__w.Write("\"></script>\r\n<script type=\"text/javascript\" src=\"");
                             @__w.Write( SPContext.Current.Site.RootWeb.Url + "/SiteAssets/Scripts/awesome-calculator.js" );
 
-            @__w.Write("\"></script>\r\n\r\n");
-            parameterContainer.Controls[0].RenderControl(@__w);
+            @__w.Write("\"></script>");
         }
         
         [GeneratedCodeAttribute("Microsoft.VisualStudio.SharePoint.ProjectExtensions.CodeGenerators.SharePointWebP" +

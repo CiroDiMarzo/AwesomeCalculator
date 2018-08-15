@@ -56,5 +56,3 @@
 </div>
 <script type="text/javascript" src="<%= SPContext.Current.Site.RootWeb.Url + "/SiteAssets/Scripts/jquery-3.3.1.min.js" %>"></script>
 <script type="text/javascript" src="<%= SPContext.Current.Site.RootWeb.Url + "/SiteAssets/Scripts/awesome-calculator.js" %>"></script>
-
-<asp:Button runat="server" ID="btnTest" OnClick="btnTest_Click" Text="Run Test" />

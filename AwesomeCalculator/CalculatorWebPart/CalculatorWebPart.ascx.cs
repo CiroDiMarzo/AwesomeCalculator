@@ -1,11 +1,13 @@
-﻿using System;
+﻿using Microsoft.SharePoint;
+using Microsoft.SharePoint.WebPartPages;
+using System;
 using System.ComponentModel;
 using System.Web.UI.WebControls.WebParts;
 
 namespace AwesomeCalculator.CalculatorWebPart
 {
     [ToolboxItemAttribute(false)]
-    public partial class CalculatorWebPart : WebPart
+    public partial class CalculatorWebPart : System.Web.UI.WebControls.WebParts.WebPart
     {
         public string SiteAssetsLibraryUrl { get; set; }
 
@@ -26,11 +28,6 @@ namespace AwesomeCalculator.CalculatorWebPart
 
         protected void Page_Load(object sender, EventArgs e)
         {
-        }
-
-        protected void btnTest_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
