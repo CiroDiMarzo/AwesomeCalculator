@@ -67,7 +67,7 @@ namespace AwesomeCalculator.Features.AwesomeCalculator.ListInstances
                 using (System.Web.UI.WebControls.WebParts.WebPart calculatorWebPart = GetWebPart(web, "AwesomeCalculator_CalculatorWebPart.webpart"))
                 {
                     calculatorWebPart.ChromeType = PartChromeType.TitleOnly;
-                    calculatorWebPart.Title = "Calculator WebPart";
+                    calculatorWebPart.Title = "Calculator";
                     webPartManager.AddWebPart(calculatorWebPart, "Left", 1);
                     webPartManager.SaveChanges(calculatorWebPart);
                 }
