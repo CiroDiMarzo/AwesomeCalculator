@@ -245,7 +245,6 @@
 
     function save() {
         var operation = $('input[name="operation"]:checked').val();
-        console.log(operation);
         if (operation === 'sum') {
             sum();
         } else {

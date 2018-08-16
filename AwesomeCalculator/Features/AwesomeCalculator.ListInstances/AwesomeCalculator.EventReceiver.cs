@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using Microsoft.SharePoint;
@@ -58,15 +59,42 @@ namespace AwesomeCalculator.Features.AwesomeCalculator.ListInstances
         {
             SPWeb web = SPContext.Current.Web;
             SPFile file = web.GetFile("SitePages/Home.aspx");
-            SPLimitedWebPartManager webPartManager = file.GetLimitedWebPartManager(PersonalizationScope.Shared);
-
-            using (System.Web.UI.WebControls.WebParts.WebPart calculatorWebPart = GetWebPart(web, "AwesomeCalculator_CalculatorWebPart.webpart"))
+            
+            using (SPLimitedWebPartManager webPartManager = file.GetLimitedWebPartManager(PersonalizationScope.Shared))
             {
-                calculatorWebPart.ChromeType = PartChromeType.None;
-                calculatorWebPart.Title = "Calculator WebPart";
-                webPartManager.AddWebPart(calculatorWebPart, "Left", 1);
-                webPartManager.SaveChanges(calculatorWebPart);
+                string zoneId = ClearWebParts(webPartManager);
+
+                using (System.Web.UI.WebControls.WebParts.WebPart calculatorWebPart = GetWebPart(web, "AwesomeCalculator_CalculatorWebPart.webpart"))
+                {
+                    calculatorWebPart.ChromeType = PartChromeType.TitleOnly;
+                    calculatorWebPart.Title = "Calculator WebPart";
+                    webPartManager.AddWebPart(calculatorWebPart, "Left", 1);
+                    webPartManager.SaveChanges(calculatorWebPart);
+                }
             }
+        }
+
+        private string ClearWebParts(SPLimitedWebPartManager webPartManager)
+        {
+            string zoneId = "Bottom";
+            var webPartList = new List<System.Web.UI.WebControls.WebParts.WebPart>();
+
+            foreach (System.Web.UI.WebControls.WebParts.WebPart webpart in webPartManager.WebParts)
+            {
+                webPartList.Add(webpart);
+            }
+
+            if (webPartList.Any())
+            {
+                // take any of the webpart zones Id
+                zoneId = webPartManager.GetZoneID(webPartList[0]);
+
+                foreach (var webpart in webPartList)
+                {
+                    webPartManager.DeleteWebPart(webpart);
+                }
+            }
+            return zoneId;
         }
 
         private void CreateView(string viewName, string listTitle, string[] viewFields, SPWeb web)
