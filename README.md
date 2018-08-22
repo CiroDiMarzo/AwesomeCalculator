@@ -4,7 +4,7 @@
 The solution has been developed under SharePoint 2013, using a new Azure virtual farm created with the “SharePoint 2013 non-HA Farm” template.
 
 - Unzip the provided “Ciro_di_Marzo_Calculator.zip” file and copy its content to the SharePoint front and server. The zip file contains two folders:
-  - Solution
+  - Scripts
   - Solution
 - In the Scripts folder, open the Variables.ps1 file and update the following variables with the correct values for your environment:
   - $webApp: the web application that will contain the site collection to be created
