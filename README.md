@@ -1,5 +1,5 @@
 # AwesomeCalculator
-## Installation guide
+### Installation guide
 
 The solution has been developed under SharePoint 2013, using a new Azure virtual farm created with the “SharePoint 2013 non-HA Farm” template.
 
